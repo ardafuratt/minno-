@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#02040a" />
+  <title>Minnoş — küçük bir kalp, sahip olabilirsin</title>
+  <meta name="description" content="Minnoş, dokununca hissedip, baktığında gülümseyen minik bir robot arkadaş." />
+  <!-- Canlı yayında paylaşım önizlemesi için tek yer: domain veya dosya yolu değişirse aşağıdaki SITE_URL / görsel yolunu güncelle -->
+  <link rel="canonical" href="https://makinafleo.com/minnos.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Minnoş · MakinaFleo" />
+  <meta property="og:url" content="https://makinafleo.com/minnos.html" />
+  <meta property="og:title" content="Minnoş — küçük bir kalp, sahip olabilirsin" />
+  <meta property="og:description" content="Minnoş, dokununca hissedip, baktığında gülümseyen minik bir robot arkadaş." />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:image" content="https://makinafleo.com/images/mino%C5%9F_1.png" />
+  <meta property="og:image:secure_url" content="https://makinafleo.com/images/mino%C5%9F_1.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Minnoş — yumuşak kılıflı minik robot karakter" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Minnoş — küçük bir kalp, sahip olabilirsin" />
+  <meta name="twitter:description" content="Minnoş, dokununca hissedip, baktığında gülümseyen minik bir robot arkadaş." />
+  <meta name="twitter:image" content="https://makinafleo.com/images/mino%C5%9F_1.png" />
+  <link rel="icon" href="images/favicon_2.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" />
+
+  <link rel="stylesheet" href="minnos.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+</head>
+<body data-theme="gece">
+
+  <a class="skip-link" href="#main">İçeriğe atla</a>
+
+  <!-- Boot / uyanma ekranı -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <span class="boot__mark">minnoş</span>
+    <span class="boot__line"><span class="boot__fill"></span></span>
+  </div>
+
+  <!-- Tema katmanları + grid + cursor aura -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__theme" data-theme="yosun"></div>
+    <div class="bg__theme" data-theme="gece"></div>
+    <div class="bg__theme" data-theme="gri"></div>
+    <div class="bg__theme" data-theme="pembe"></div>
+    <div class="bg__theme" data-theme="sari"></div>
+    <div class="bg__theme" data-theme="beyaz"></div>
+    <div class="bg__grid"></div>
+    <div class="bg__noise"></div>
+    <div class="bg__cursor" id="cursorAura"></div>
+  </div>
+
+  <!-- macOS tarzı floating nav -->
+  <header class="topnav" id="topnav">
+    <a class="topnav__mark" href="#colors">
+      <span class="topnav__dot"></span>
+      <span>minnoş</span>
+    </a>
+    <button type="button" class="topnav__menu-btn" id="navMenuBtn" aria-expanded="false" aria-controls="topnavLinks" aria-label="Menüyü aç">
+      <span class="topnav__menu-icon" aria-hidden="true"></span>
+    </button>
+    <nav class="topnav__links" id="topnavLinks" aria-label="Sayfa bölümleri">
+      <a href="#colors" data-nav="colors" class="is-active" aria-current="true">kılıflar</a>
+      <a href="#features" data-nav="features">özellikler</a>
+      <a href="#materials" data-nav="materials">dokuş</a>
+      <a href="#touch" data-nav="touch">dokun</a>
+      <a href="#meet" data-nav="meet">video</a>
+    </nav>
+    <a href="#cta" class="topnav__cta">sahiplen</a>
+  </header>
+
+  <main id="main" tabindex="-1">
+  <!-- 1) COLORS / WELCOME =================================== -->
+  <section class="colors colors--welcome" id="colors">
+    <div class="colors__head">
+      <p class="caption reveal"><span class="k">01</span><span class="kdot">·</span><span>studio configurator</span></p>
+      <h1 class="display colors__title reveal">Minnoşunu <em>tasarla.</em></h1>
+      <p class="lead reveal">Yumuşacık kılıf, mavi OLED gözler ve dokununca tepki veren minik bir karakter. Rengini seç, bütün sahne onun havasına girsin.</p>
+      <div class="hero-metrics reveal" aria-label="Minnoş öne çıkan özellikler">
+        <span><strong>15+</strong> mimik</span>
+        <span><strong>10 saat</strong> pil</span>
+        <span><strong>OLED</strong> gözler</span>
+      </div>
+    </div>
+
+    <div class="colors__stage reveal" id="colorsStage">
+      <div class="stage__grid"></div>
+      <div class="stage__halo"></div>
+
+      <div class="colors__wordmark" id="colorsWordmark" aria-hidden="true">
+        <span>G</span><span>E</span><span>C</span><span>E</span>
+      </div>
+
+      <div class="minnos minnos--colors" id="colorsMinnos" data-emotion="">
+        <div class="minnos__shadow"></div>
+        <div class="minnos__body">
+          <div class="minnos__top" aria-hidden="true"></div>
+          <div class="minnos__side" aria-hidden="true"></div>
+          <div class="minnos__fur" aria-hidden="true"></div>
+          <div class="minnos__shine"></div>
+          <div class="minnos__screen">
+            <span class="eye left"></span>
+            <span class="eye right"></span>
+            <span class="minnos__scanlines"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio-orbit" aria-hidden="true">
+        <span>soft shell</span>
+        <span>touch reactive</span>
+        <span>oled mood</span>
+      </div>
+    </div>
+
+    <div class="colors__controls reveal">
+      <div class="swatches" role="radiogroup" aria-label="Kılıf" tabindex="0">
+        <button class="swatch" data-color="yosun" data-word="Y O S U N" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#132a22,#0a2a1f 52%,#c5a059);"></span>
+          <span class="swatch__name">Yosun</span>
+        </button>
+        <button class="swatch" data-color="gece" data-word="G E C E" role="radio" aria-checked="true">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#111a33,#02040a 56%,#b9c7e6);"></span>
+          <span class="swatch__name">Gece</span>
+        </button>
+        <button class="swatch" data-color="gri" data-word="G R İ" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#2C2C2E,#1C1C1E 58%,#BFC1C3);"></span>
+          <span class="swatch__name">Gri</span>
+        </button>
+        <button class="swatch" data-color="pembe" data-word="P E M B E" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#5b0d2b,#17000a 56%,#f5a6b8);"></span>
+          <span class="swatch__name">Pembe</span>
+        </button>
+        <button class="swatch" data-color="sari" data-word="S A R I" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#4A3A1F,#2D2416 58%,#FFD700);"></span>
+          <span class="swatch__name">Sarı</span>
+        </button>
+        <button class="swatch" data-color="beyaz" data-word="B E Y A Z" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#F5F5F7,#E8E8EA 58%,#C9CDD1);"></span>
+          <span class="swatch__name">Beyaz</span>
+        </button>
+      </div>
+      <p class="colors__note" id="colorsNote" aria-live="polite"><span>Şu an:</span> <strong>Gece</strong> — Crystal Midnight: siyah zemin, buz mavisi parıltı ve gümüş metal.</p>
+    </div>
+
+    <a href="#features" class="scroll-ind" aria-label="Aşağı kay">
+      <span></span>
+      <em>özellikler</em>
+    </a>
+  </section>
+
+  <!-- 2) FEATURES =========================================== -->
+  <section class="features" id="features">
+    <div class="features__head">
+      <p class="caption reveal"><span class="k">02</span><span class="kdot">·</span><span>özellikler</span></p>
+      <h2 class="display reveal">Rengini seçtin. Şimdi <em>neler yapıyor?</em></h2>
+      <p class="lead reveal">Minnoş küçük görünüyor; ama içinde dokunma, mimik, ses ve uyku ritmi olan canlı bir karakter var.</p>
+    </div>
+
+    <div class="features__grid">
+      <article class="cell reveal">
+        <span class="cell__num">01</span>
+        <h3>10+ saat</h3>
+        <p>Yanında saatlerce: yolda, ders başında, uykuya dalarken.</p>
+      </article>
+      <article class="cell reveal">
+        <span class="cell__num">02</span>
+        <h3>15+ mimik</h3>
+        <p>Meraklı, uykulu, küskün, mutlu... ruh hali gözlerinden akar.</p>
+      </article>
+      <article class="cell reveal">
+        <span class="cell__num">03</span>
+        <h3>Dokunma sensörü</h3>
+        <p>Okşamayı, hızlı dokunuşu ve sessiz bekleyişi ayırt eder.</p>
+      </article>
+      <article class="cell reveal">
+        <span class="cell__num">04</span>
+        <h3>Mavi OLED gözler</h3>
+        <p>Gerçek üründeki gibi siyah ekranda neon mavi ifadeler.</p>
+      </article>
+      <article class="cell reveal">
+        <span class="cell__num">05</span>
+        <h3>Tatlı sesler</h3>
+        <p>Duyguya göre değişen minik melodiler; hiçbiri can sıkmaz.</p>
+      </article>
+      <article class="cell reveal">
+        <span class="cell__num">06</span>
+        <h3>Uyku modu</h3>
+        <p>Sakinleşince uyur. Uyurken <em>seni özlediğini</em> mırıldanır.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="materials" id="materials">
+    <div class="materials__head">
+      <p class="caption reveal"><span class="k">02.5</span><span class="kdot">·</span><span>dokusu</span></p>
+      <h2 class="display reveal">Oyuncak gibi tatlı. <em>Ürün gibi ciddi.</em></h2>
+    </div>
+    <div class="materials__grid">
+      <article class="material-card reveal">
+        <img src="images/green_minoş_urun.jpg" alt="Yosun Minnoş" loading="lazy" decoding="async" />
+        <div>
+          <span>soft shell</span>
+          <h3>Tüylü ve sıcak yüzey</h3>
+          <p>Masada dekor gibi durur, elde küçük bir evcil dost gibi hissedilir.</p>
+        </div>
+      </article>
+      <article class="material-card reveal">
+        <img src="images/gray_minoş_urun.jpg" alt="Gri Minnoş" loading="lazy" decoding="async" />
+        <div>
+          <span>oled display</span>
+          <h3>Siyah ekranda mavi ifade</h3>
+          <p>Mutlu, uykulu ve küskün ruh hali tek bakışta anlaşılır.</p>
+        </div>
+      </article>
+      <article class="material-card reveal">
+        <img src="images/minoş_1.png" alt="Minnoş renkleri" loading="lazy" decoding="async" />
+        <div>
+          <span>collection</span>
+          <h3>Altı farklı karakter</h3>
+          <p>Yosun, gece, gri, pembe, sarı ve beyaz kılıflarla kişiselleşir.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3) TOUCH ============================================== -->
+  <section class="touch" id="touch">
+    <div class="touch__head">
+      <p class="caption reveal"><span class="k">03</span><span class="kdot">·</span><span>interaktif deneyim</span></p>
+      <h2 class="display reveal">Şimdi <em>dokun</em>. Tepkisini canlı gör.</h2>
+      <p class="lead reveal">3D hissi veren sahnede tek dokunuş onu mutlu eder, çift hızlı dokunuş gözlerini keskinleştirir.</p>
+    </div>
+
+    <div class="touch__grid">
+      <div class="window window--pet reveal">
+        <div class="window__bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <div class="window__addr"><span id="moodAddr">minnoş · idle</span></div>
+          <div class="window__sys"><span class="window__chip" id="moodChip">meraklı</span></div>
+        </div>
+        <div class="window__body">
+          <div class="stage stage--pet" id="petStage" role="button" tabindex="0" aria-label="Minnoş: sürükleyerek çevir, tek tık mutlu, çift tık küskün">
+            <div class="stage__grid"></div>
+            <div class="stage__halo"></div>
+
+            <div class="minnos minnos--pet minnos--interactive" id="petMinnos" data-emotion="">
+              <div class="minnos__shadow"></div>
+              <div class="minnos3d" id="petCube">
+                <!-- Ön yüz: OLED ekran + gözler -->
+                <div class="minnos3d__face minnos3d__face--front">
+                  <div class="minnos__fur" aria-hidden="true"></div>
+                  <div class="minnos__shine"></div>
+                  <div class="minnos__screen">
+                    <span class="eye left"></span>
+                    <span class="eye right"></span>
+                    <span class="minnos__scanlines"></span>
+                    <p class="minnos__affection-line" id="petAffection" aria-live="polite"></p>
+                  </div>
+                </div>
+                <!-- Arka yüz: şarj portu + logo -->
+                <div class="minnos3d__face minnos3d__face--back" aria-hidden="true">
+                  <div class="minnos__fur"></div>
+                  <div class="minnos3d__port"></div>
+                  <span class="minnos3d__logo">minnoş</span>
+                </div>
+                <!-- Sol yüz: hoparlör -->
+                <div class="minnos3d__face minnos3d__face--left" aria-hidden="true">
+                  <div class="minnos__fur"></div>
+                  <div class="minnos3d__speaker"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Sağ yüz: buton -->
+                <div class="minnos3d__face minnos3d__face--right" aria-hidden="true">
+                  <div class="minnos__fur"></div>
+                  <div class="minnos3d__btn"></div>
+                </div>
+                <!-- Üst yüz -->
+                <div class="minnos3d__face minnos3d__face--top" aria-hidden="true">
+                  <div class="minnos__fur"></div>
+                </div>
+                <!-- Alt yüz -->
+                <div class="minnos3d__face minnos3d__face--bottom" aria-hidden="true">
+                  <div class="minnos__fur"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reactions" id="petReactions"></div>
+
+            <div class="stage__caption stage__caption--hint" id="petHint">
+              <span class="live"></span>
+              <span>sürükle · tıkla</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="touch__side">
+        <ul class="spec">
+          <li class="reveal">
+            <span class="spec__num">01</span>
+            <div>
+              <h4>Tek dokunuş</h4>
+              <p>Gözleri yaylanır, minik bir melodi.</p>
+            </div>
+            <span class="spec__glyph" data-state="happy"><i></i><i></i></span>
+          </li>
+          <li class="reveal">
+            <span class="spec__num">02</span>
+            <div>
+              <h4>Çift hızlı dokunuş</h4>
+              <p>Gözleri fotoğraftaki gibi keskinleşir. 3sn küser.</p>
+            </div>
+            <span class="spec__glyph" data-state="angry"><i></i><i></i></span>
+          </li>
+          <li class="reveal">
+            <span class="spec__num">03</span>
+            <div>
+              <h4>Sessizlikte</h4>
+              <p>Göz kapakları iner, yavaşça sallanarak uyur.</p>
+            </div>
+            <span class="spec__glyph" data-state="sleepy"><i></i><i></i></span>
+          </li>
+        </ul>
+
+        <button class="pill" id="soundToggle" aria-pressed="true">
+          <span class="pill__dot"></span>
+          <span class="on">sound · on</span>
+          <span class="off">sound · off</span>
+        </button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 4) MEET — tanıtım videosu ============================= -->
+  <section class="meet" id="meet">
+    <div class="meet__head">
+      <p class="caption reveal"><span class="k">04</span><span class="kdot">·</span><span>gerçek ürün</span></p>
+      <h2 class="display reveal">Gözlerinin gerçek <em>ritmini</em> izle.</h2>
+    </div>
+
+    <div class="window window--media reveal">
+      <div class="window__bar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <div class="window__addr">
+          <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7-11-7z" fill="currentColor"/></svg>
+          <span>minnoş · gerçek video</span>
+        </div>
+        <div class="window__sys"><span class="window__chip">HD</span></div>
+      </div>
+      <div class="window__body window__body--video">
+        <div class="video-shell" id="videoShell" aria-busy="true" aria-label="Video yükleniyor">
+          <div class="video-shell__loading" id="videoLoading" aria-hidden="true"></div>
+          <video class="product-video" id="productVideo" src="video/minnos_web_vid.mp4" controls playsinline preload="metadata" poster="images/minoş_1.png"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5) CTA ================================================ -->
+  <section class="cta" id="cta">
+    <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+    <p class="caption reveal"><span class="k">05</span><span class="kdot">·</span><span>sahiplen</span></p>
+    <h2 class="display cta__title reveal">
+      Onu <em>sahiplenmek</em><br />ister misin?
+    </h2>
+    <p class="cta__sub reveal">Hazır. Biraz utangaç. Ama tamamen senin olacak.</p>
+    <div class="cta__actions reveal">
+      <span id="adoptMailHint" class="visually-hidden">Onayladığınızda e-posta uygulamanız açılır.</span>
+      <button class="button button--huge" id="adoptBtn" type="button" aria-describedby="adoptMailHint">
+        <span>minnoşu sahiplen</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="button button--ghost" href="mailto:info@makinafleo.com?subject=Minnoş%20hakkında%20bilgi">bilgi iste</a>
+    </div>
+    <p class="cta__thanks" id="ctaThanks">teşekkürler — seninle çok iyi olacak.</p>
+  </section>
+
+  <!-- Minimal dock (macOS esinti) -->
+  <div class="dock" id="dock" aria-hidden="true">
+    <span class="dock__state" id="dockState">
+      <span class="dock__dot"></span>
+      <span>minnoş · meraklı</span>
+    </span>
+    <span class="dock__sep"></span>
+    <span class="dock__time" id="dockTime">00:00</span>
+  </div>
+
+  <footer class="site-footer" id="footer">
+    <div class="footer-card">
+      <div class="footer-brand">
+        <a href="#colors" class="footer-logo" aria-label="Üst bölüme dön">
+          <img src="images/minoş_1-removebg-preview.png" alt="Minnoş" loading="lazy" decoding="async" />
+        </a>
+        <h2>minnoş</h2>
+        <p>minik bedeninde kocaman bir kalbi var.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Links</h3>
+        <a href="https://github.com/makinafleo" target="_blank" rel="noopener noreferrer">Projeler</a>
+        <a href="mailto:info@makinafleo.com?subject=Minnoş%20%2F%20MakinaFleo">İş birliği</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Social Media</h3>
+        <a href="https://www.youtube.com/channel/UC4JMOTgAy32O7BfJBDLREKQ" target="_blank" rel="noopener noreferrer">Youtube</a>
+        <a href="https://instagram.com/makin_afleo?igshid=MmIzYWVlNDQ5Yg==" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://github.com/makinafleo" target="_blank" rel="noopener noreferrer">Github</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contacts</h3>
+        <span>Eskişehir/Türkiye</span>
+        <a href="tel:+900000000000">+90 000 000 00 00</a>
+        <a href="mailto:info@makinafleo.com">info@makinafleo.com</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <a href="https://github.com/makinafleo" target="_blank" rel="noopener noreferrer">MakinaFleo</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <button type="button" class="to-top" id="toTop" aria-label="Sayfanın başına dön">↑</button>
+
+  </main>
+
+  <div class="topnav__backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <script src="minnos.js" defer></script>
+</body>
+</html>
