@@ -862,12 +862,18 @@ body[data-theme="beyaz"] .bg__theme[data-theme="beyaz"] { opacity: 1; }
     left: 50%;
     right: auto;
     transform: translateX(-50%) scale(1.01);
-    object-position: center center;
+    object-position: 64% center;
   }
   .window__bar { height: 34px; padding: 0 10px; }
   .dot { width: 10px; height: 10px; }
   .window__addr { font-size: 11px; height: 22px; padding: 0 10px; }
   .window__sys { display: none; }
+}
+
+@media (max-width: 420px) {
+  .hero-video__media {
+    object-position: 67% center;
+  }
 }
 
 /* STAGE (inside window) =============================================== */
