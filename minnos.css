@@ -286,6 +286,7 @@ button { font-family: inherit; cursor: pointer; border: 0; background: transpare
   overflow: hidden;
   border-radius: 0 0 30px 30px;
   margin-bottom: 14px;
+  background: #0b0e14;
 }
 .hero-video__media {
   position: absolute;
@@ -299,6 +300,7 @@ button { font-family: inherit; cursor: pointer; border: 0; background: transpare
   opacity: 1;
   transform: scale(1.005);
   transition: transform 1.2s var(--ease-soft);
+  background: #0b0e14;
 }
 .hero-video__veil {
   position: absolute;
@@ -857,12 +859,11 @@ body[data-theme="beyaz"] .bg__theme[data-theme="beyaz"] { opacity: 1; }
     border-radius: 0 0 18px 18px;
   }
   .hero-video__media {
-    width: 100vw;
-    max-width: none;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%) scale(1.01);
-    object-position: 64% center;
+    width: 100%;
+    left: 0;
+    right: 0;
+    transform: scale(1.01);
+    object-position: 90% center;
   }
   .window__bar { height: 34px; padding: 0 10px; }
   .dot { width: 10px; height: 10px; }
@@ -872,7 +873,7 @@ body[data-theme="beyaz"] .bg__theme[data-theme="beyaz"] { opacity: 1; }
 
 @media (max-width: 420px) {
   .hero-video__media {
-    object-position: 67% center;
+    object-position: 94% center;
   }
 }
 
