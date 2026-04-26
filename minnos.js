@@ -34,6 +34,7 @@
   const SOUND_TOGGLE = $("#soundToggle");
   const COLORS_WORDMARK = $("#colorsWordmark");
   const COLORS_NOTE = $("#colorsNote");
+  const COLORS_STAGE = $("#colorsStage");
 
   const REACTIONS_HERO = $("#heroReactions");
   const REACTIONS_PET  = $("#petReactions");
@@ -50,6 +51,9 @@
   const TOPNAV_LINKS = $("#topnavLinks");
   const NAV_BACKDROP = $("#navBackdrop");
   const MAIN_EL = $("#main");
+  const INTRO_VIDEO = $("#heroVideoMedia");
+  const INTRO_ENTER = $("#introEnter");
+  const HERO_VIDEO = $("#heroVideo");
 
   /* ---------- Boot sequence ---------- */
   let heroRevealed = false;
@@ -68,14 +72,7 @@
   });
 
   /* ---------- Topnav behaviour ---------- */
-  let lastY = 0;
-  function onScroll() {
-    const y = window.scrollY;
-    if (!TOPNAV) return;
-    if (y > 60 && y > lastY) TOPNAV.classList.add("is-hidden");
-    else TOPNAV.classList.remove("is-hidden");
-    lastY = y;
-  }
+  function onScroll() {}
   function onScrollUx() {
     onScroll();
     const y = window.scrollY;
@@ -87,6 +84,19 @@
     window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
     $("#main")?.focus({ preventScroll: true });
   });
+
+  INTRO_ENTER?.addEventListener("click", () => {
+    const target = document.getElementById("colors");
+    if (!target) return;
+    target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+  });
+  function revealHeroVideo() {
+    HERO_VIDEO?.classList.add("is-ready");
+  }
+  INTRO_VIDEO?.addEventListener("loadeddata", revealHeroVideo, { once: true });
+  INTRO_VIDEO?.addEventListener("canplay", revealHeroVideo, { once: true });
+  INTRO_VIDEO?.addEventListener("error", revealHeroVideo, { once: true });
+  INTRO_VIDEO?.play().then(revealHeroVideo).catch(revealHeroVideo);
 
   function isMobileNavDrawer() {
     return matchMedia("(max-width: 560px)").matches;
@@ -151,6 +161,7 @@
   PRODUCT_VIDEO?.addEventListener("loadeddata", markVideoShellReady);
   PRODUCT_VIDEO?.addEventListener("error", markVideoShellReady);
   if (PRODUCT_VIDEO && PRODUCT_VIDEO.readyState >= 2) markVideoShellReady();
+  if (!PRODUCT_VIDEO && VIDEO_SHELL) markVideoShellReady();
 
   /* ---------- Dock clock ---------- */
   function tickClock() {
@@ -162,7 +173,7 @@
   setInterval(tickClock, 30_000);
 
   /* ---------- Cursor aura ---------- */
-  if (CURSOR_AURA && !reducedMotion) {
+  if (CURSOR_AURA && !reducedMotion && false) {
     let x = 0, y = 0, tx = 0, ty = 0;
     window.addEventListener("pointermove", (e) => { tx = e.clientX; ty = e.clientY; });
     const loop = () => {
@@ -266,7 +277,7 @@
   setInterval(() => {
     if (document.visibilityState !== "visible") return;
     randomLook();
-  }, 2400);
+  }, 5000);
 
   /* ---------- Mood state ---------- */
   let mood = "meraklı";
@@ -503,6 +514,18 @@
     }, { threshold: [0, 0.06, 0.12, 0.2] }).observe(PET_STAGE);
   }
 
+  /* ---------- Move colors block above interactive ---------- */
+  const TOUCH_SECTION = $("#touch");
+  const COLORS_SECTION = $("#colors");
+  const COLORS_CONTROLS = $(".colors__controls");
+  const COLORS_STAGE_EL = $("#colorsStage");
+  if (COLORS_SECTION && TOUCH_SECTION) {
+    TOUCH_SECTION.parentNode.insertBefore(COLORS_SECTION, TOUCH_SECTION);
+  }
+  if (COLORS_SECTION && COLORS_CONTROLS && COLORS_STAGE_EL) {
+    COLORS_STAGE_EL.insertAdjacentElement("afterend", COLORS_CONTROLS);
+  }
+
   /* ---------- Idle sleep ---------- */
   ["pointermove", "pointerdown", "keydown", "scroll", "touchstart"].forEach(ev => {
     window.addEventListener(ev, () => { wake = Date.now(); if (mood === "uyuyor") wakeUp(); }, { passive: true });
@@ -514,12 +537,14 @@
   /* ---------- Color swatches (theme swap) ---------- */
   const SWATCHES = $$(".swatch");
   const NOTE_MAP = {
-    yosun: "Emerald Elite: altın aksanlı koyu orman.",
-    gece:  "Crystal Midnight: siyah zemin, buz mavisi parıltı ve gümüş metal.",
-    gri:   "Steel Sophistication: krom ve antrasit.",
-    pembe: "Pink Crystal: bordo zemin, pembe parıltı ve yumuşak cam ışığı.",
-    sari:  "Golden Opulence: bronz ve altın tozu.",
-    beyaz: "Platinum Pure: kristal, platin ve kırık beyaz.",
+    yosun: "Doğal ve yumuşak bir his verir.",
+    gece:  "Daha modern ve güçlü görünür.",
+    gri:   "Sade ve dengeli bir görünüm sunar.",
+    pembe: "Sıcak ve tatlı bir enerji katar.",
+    sari:  "Canlı ve neşeli görünür.",
+    beyaz: "Temiz ve sade bir görünüm sunar.",
+    mavi: "Serin ve ferah bir tarz sağlar.",
+    kirmizi: "Canlı ve dikkat çekici bir his verir.",
   };
   function selectSwatch(btn) {
     if (!btn) return;
@@ -528,7 +553,8 @@
     const name  = btn.querySelector(".swatch__name")?.textContent || "";
 
     SWATCHES.forEach(s => s.setAttribute("aria-checked", s === btn ? "true" : "false"));
-    document.body.setAttribute("data-theme", color);
+    document.body.setAttribute("data-theme", "beyaz");
+    COLORS_STAGE?.setAttribute("data-swatch", color);
     syncThemeMeta();
 
     if (COLORS_WORDMARK) {
@@ -550,6 +576,19 @@
     selectSwatch._t = setTimeout(() => setAllEmotion(""), 900);
   }
   SWATCHES.forEach(s => s.addEventListener("click", () => selectSwatch(s)));
+
+  const FEATURE_CELLS = $$("#featureGrid .cell");
+  FEATURE_CELLS.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      FEATURE_CELLS.forEach(c => c.classList.remove("is-active"));
+      cell.classList.add("is-active");
+    });
+    cell.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      cell.click();
+    });
+  });
 
   const SWATCH_CONTAINER = document.querySelector(".swatches");
   SWATCH_CONTAINER?.addEventListener("keydown", (e) => {
@@ -577,7 +616,7 @@
 
   /* ---------- Nav scroll spy ---------- */
   const NAV_LINKS = $$(".topnav__links a[data-nav]");
-  const SECTION_IDS = ["colors", "features", "materials", "touch", "meet", "cta"];
+  const SECTION_IDS = ["colors", "features", "materials", "touch", "meet", "cta", "contact"];
   const sections = SECTION_IDS.map(id => document.getElementById(id)).filter(Boolean);
   if (NAV_LINKS.length && sections.length && "IntersectionObserver" in window) {
     const obs = new IntersectionObserver((entries) => {
@@ -614,7 +653,7 @@
     const ctx = c.getContext("2d");
     ctx.scale(devicePixelRatio, devicePixelRatio);
     const palette = themedPalette();
-    const N = 160;
+    const N = 90;
     const parts = [];
     for (let i = 0; i < N; i++) {
       parts.push({
@@ -694,6 +733,7 @@
 
   /* ---------- ScrollTrigger reveals ---------- */
   function bindScrollReveals() {
+    if (window.matchMedia("(max-width: 900px)").matches) return;
     if (!window.gsap || !window.ScrollTrigger) return;
     const g = window.gsap;
     g.registerPlugin(window.ScrollTrigger);
@@ -710,21 +750,7 @@
       );
     });
 
-    // Parallax on window scenes
-    $$(".window").forEach(w => {
-      g.to(w, {
-        yPercent: -3,
-        ease: "none",
-        scrollTrigger: { trigger: w, start: "top bottom", end: "bottom top", scrub: 0.45, fastScrollEnd: true }
-      });
-    });
-
-    // Subtle depth on the first product stage
-    g.to("#colorsStage .minnos", {
-      yPercent: -6,
-      ease: "none",
-      scrollTrigger: { trigger: "#colors", start: "top top", end: "bottom top", scrub: 0.45, fastScrollEnd: true }
-    });
+    // Performance mode: skip heavy parallax effects.
   }
 
   /* ---------- Init when libs ready ---------- */

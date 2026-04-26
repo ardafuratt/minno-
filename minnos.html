@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#02040a" />
+  <meta name="theme-color" content="#f5f5f7" />
   <title>Minnoş — küçük bir kalp, sahip olabilirsin</title>
   <meta name="description" content="Minnoş, dokununca hissedip, baktığında gülümseyen minik bir robot arkadaş." />
   <!-- Canlı yayında paylaşım önizlemesi için tek yer: domain veya dosya yolu değişirse aşağıdaki SITE_URL / görsel yolunu güncelle -->
@@ -26,14 +26,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" />
 
   <link rel="stylesheet" href="minnos.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
-<body data-theme="gece">
+<body data-theme="beyaz">
 
   <a class="skip-link" href="#main">İçeriğe atla</a>
 
@@ -59,42 +59,65 @@
   <!-- macOS tarzı floating nav -->
   <header class="topnav" id="topnav">
     <a class="topnav__mark" href="#colors">
-      <span class="topnav__dot"></span>
+      <img class="topnav__logo" src="images/logo.png" alt="Minnoş logo" loading="eager" decoding="async" />
       <span>minnoş</span>
     </a>
     <button type="button" class="topnav__menu-btn" id="navMenuBtn" aria-expanded="false" aria-controls="topnavLinks" aria-label="Menüyü aç">
       <span class="topnav__menu-icon" aria-hidden="true"></span>
     </button>
     <nav class="topnav__links" id="topnavLinks" aria-label="Sayfa bölümleri">
-      <a href="#colors" data-nav="colors" class="is-active" aria-current="true">kılıflar</a>
+      <a href="#colors" data-nav="colors" class="is-active" aria-current="true">anasayfa</a>
       <a href="#features" data-nav="features">özellikler</a>
-      <a href="#materials" data-nav="materials">dokuş</a>
-      <a href="#touch" data-nav="touch">dokun</a>
+      <a href="#touch" data-nav="touch">deneyim</a>
       <a href="#meet" data-nav="meet">video</a>
+      <a href="#contact" data-nav="contact">iletişim</a>
     </nav>
     <a href="#cta" class="topnav__cta">sahiplen</a>
   </header>
 
   <main id="main" tabindex="-1">
+  <section class="hero-video" id="heroVideo" aria-label="Minnoş tanıtım videosu">
+    <video
+      class="hero-video__media"
+      id="heroVideoMedia"
+      src="video/minnos_web_vid.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="images/minoş_1.png"
+    ></video>
+    <div class="hero-video__veil" aria-hidden="true"></div>
+    <div class="hero-video__content">
+      <p class="hero-video__kicker">minnoş ile tanış</p>
+      <h1>Bugün biraz daha <em>gülümse.</em></h1>
+      <p>Minnoş, gününe küçük bir neşe katmak için burada. Hazırsan birlikte başlayalım.</p>
+      <div class="hero-video__actions">
+        <button type="button" class="hero-video__btn" id="introEnter">deneyime geç</button>
+      </div>
+    </div>
+  </section>
+
   <!-- 1) COLORS / WELCOME =================================== -->
   <section class="colors colors--welcome" id="colors">
     <div class="colors__head">
       <p class="caption reveal"><span class="k">01</span><span class="kdot">·</span><span>studio configurator</span></p>
-      <h1 class="display colors__title reveal">Minnoşunu <em>tasarla.</em></h1>
-      <p class="lead reveal">Yumuşacık kılıf, mavi OLED gözler ve dokununca tepki veren minik bir karakter. Rengini seç, bütün sahne onun havasına girsin.</p>
+      <h1 class="display colors__title reveal">Minnoşla <em>tanış.</em></h1>
+      <p class="lead reveal">Minnoş küçük, sevimli ve sana eşlik etmeyi seviyor. Dokun, gözlerinin değişimini izle ve en sevdiğin rengi seç.</p>
       <div class="hero-metrics reveal" aria-label="Minnoş öne çıkan özellikler">
-        <span><strong>15+</strong> mimik</span>
-        <span><strong>10 saat</strong> pil</span>
-        <span><strong>OLED</strong> gözler</span>
+        <span><strong>gün boyu</strong> yanında</span>
+        <span><strong>dokununca</strong> tepki</span>
+        <span><strong>minik</strong> melodiler</span>
       </div>
     </div>
 
-    <div class="colors__stage reveal" id="colorsStage">
+    <div class="colors__stage reveal" id="colorsStage" data-swatch="beyaz">
       <div class="stage__grid"></div>
       <div class="stage__halo"></div>
 
       <div class="colors__wordmark" id="colorsWordmark" aria-hidden="true">
-        <span>G</span><span>E</span><span>C</span><span>E</span>
+        <span>B</span><span>E</span><span>Y</span><span>A</span><span>Z</span>
       </div>
 
       <div class="minnos minnos--colors" id="colorsMinnos" data-emotion="">
@@ -112,41 +135,6 @@
         </div>
       </div>
 
-      <div class="studio-orbit" aria-hidden="true">
-        <span>soft shell</span>
-        <span>touch reactive</span>
-        <span>oled mood</span>
-      </div>
-    </div>
-
-    <div class="colors__controls reveal">
-      <div class="swatches" role="radiogroup" aria-label="Kılıf" tabindex="0">
-        <button class="swatch" data-color="yosun" data-word="Y O S U N" role="radio" aria-checked="false">
-          <span class="swatch__chip" style="--c: linear-gradient(145deg,#132a22,#0a2a1f 52%,#c5a059);"></span>
-          <span class="swatch__name">Yosun</span>
-        </button>
-        <button class="swatch" data-color="gece" data-word="G E C E" role="radio" aria-checked="true">
-          <span class="swatch__chip" style="--c: linear-gradient(145deg,#111a33,#02040a 56%,#b9c7e6);"></span>
-          <span class="swatch__name">Gece</span>
-        </button>
-        <button class="swatch" data-color="gri" data-word="G R İ" role="radio" aria-checked="false">
-          <span class="swatch__chip" style="--c: linear-gradient(145deg,#2C2C2E,#1C1C1E 58%,#BFC1C3);"></span>
-          <span class="swatch__name">Gri</span>
-        </button>
-        <button class="swatch" data-color="pembe" data-word="P E M B E" role="radio" aria-checked="false">
-          <span class="swatch__chip" style="--c: linear-gradient(145deg,#5b0d2b,#17000a 56%,#f5a6b8);"></span>
-          <span class="swatch__name">Pembe</span>
-        </button>
-        <button class="swatch" data-color="sari" data-word="S A R I" role="radio" aria-checked="false">
-          <span class="swatch__chip" style="--c: linear-gradient(145deg,#4A3A1F,#2D2416 58%,#FFD700);"></span>
-          <span class="swatch__name">Sarı</span>
-        </button>
-        <button class="swatch" data-color="beyaz" data-word="B E Y A Z" role="radio" aria-checked="false">
-          <span class="swatch__chip" style="--c: linear-gradient(145deg,#F5F5F7,#E8E8EA 58%,#C9CDD1);"></span>
-          <span class="swatch__name">Beyaz</span>
-        </button>
-      </div>
-      <p class="colors__note" id="colorsNote" aria-live="polite"><span>Şu an:</span> <strong>Gece</strong> — Crystal Midnight: siyah zemin, buz mavisi parıltı ve gümüş metal.</p>
     </div>
 
     <a href="#features" class="scroll-ind" aria-label="Aşağı kay">
@@ -159,40 +147,40 @@
   <section class="features" id="features">
     <div class="features__head">
       <p class="caption reveal"><span class="k">02</span><span class="kdot">·</span><span>özellikler</span></p>
-      <h2 class="display reveal">Rengini seçtin. Şimdi <em>neler yapıyor?</em></h2>
-      <p class="lead reveal">Minnoş küçük görünüyor; ama içinde dokunma, mimik, ses ve uyku ritmi olan canlı bir karakter var.</p>
+      <h2 class="display reveal">Minnoşla yaşamak <em>nasıl hissettiriyor?</em></h2>
+      <p class="lead reveal">Teknik detaylara girmeden: Minnoş gün içinde sana eşlik eden, dokunuşa cevap veren tatlı bir arkadaş.</p>
     </div>
 
-    <div class="features__grid">
-      <article class="cell reveal">
+    <div class="features__grid" id="featureGrid">
+      <article class="cell reveal" tabindex="0">
         <span class="cell__num">01</span>
-        <h3>10+ saat</h3>
-        <p>Yanında saatlerce: yolda, ders başında, uykuya dalarken.</p>
+        <h3>Uzun pil ömrü</h3>
+        <p>Şarj derdi olmadan gün içinde rahatça yanında kalır.</p>
       </article>
-      <article class="cell reveal">
+      <article class="cell reveal" tabindex="0">
         <span class="cell__num">02</span>
-        <h3>15+ mimik</h3>
-        <p>Meraklı, uykulu, küskün, mutlu... ruh hali gözlerinden akar.</p>
+        <h3>Duygusunu gösterir</h3>
+        <p>Mutlu, uykulu ya da küskün olduğunda bunu hemen anlarsın.</p>
       </article>
-      <article class="cell reveal">
+      <article class="cell reveal" tabindex="0">
         <span class="cell__num">03</span>
-        <h3>Dokunma sensörü</h3>
-        <p>Okşamayı, hızlı dokunuşu ve sessiz bekleyişi ayırt eder.</p>
+        <h3>Dokununca tepki</h3>
+        <p>Nazik dokunuşta neşelenir, hızlı dokunuşta farklı tepki verir.</p>
       </article>
-      <article class="cell reveal">
+      <article class="cell reveal" tabindex="0">
         <span class="cell__num">04</span>
-        <h3>Mavi OLED gözler</h3>
-        <p>Gerçek üründeki gibi siyah ekranda neon mavi ifadeler.</p>
+        <h3>Canlı göz animasyonu</h3>
+        <p>Gözleri sayesinde her an daha canlı ve eğlenceli görünür.</p>
       </article>
-      <article class="cell reveal">
+      <article class="cell reveal" tabindex="0">
         <span class="cell__num">05</span>
-        <h3>Tatlı sesler</h3>
-        <p>Duyguya göre değişen minik melodiler; hiçbiri can sıkmaz.</p>
+        <h3>Yumuşak sesler</h3>
+        <p>Duruma göre kısa ve hoş sesler çıkarır.</p>
       </article>
-      <article class="cell reveal">
+      <article class="cell reveal" tabindex="0">
         <span class="cell__num">06</span>
-        <h3>Uyku modu</h3>
-        <p>Sakinleşince uyur. Uyurken <em>seni özlediğini</em> mırıldanır.</p>
+        <h3>Kendi kendine dinlenir</h3>
+        <p>Uzun süre bekleyince sakinleşir, dokununca tekrar canlanır.</p>
       </article>
     </div>
   </section>
@@ -200,7 +188,7 @@
   <section class="materials" id="materials">
     <div class="materials__head">
       <p class="caption reveal"><span class="k">02.5</span><span class="kdot">·</span><span>dokusu</span></p>
-      <h2 class="display reveal">Oyuncak gibi tatlı. <em>Ürün gibi ciddi.</em></h2>
+      <h2 class="display reveal">Yumuşak dokusu ile <em>çok sevimli.</em></h2>
     </div>
     <div class="materials__grid">
       <article class="material-card reveal">
@@ -227,6 +215,68 @@
           <p>Yosun, gece, gri, pembe, sarı ve beyaz kılıflarla kişiselleşir.</p>
         </div>
       </article>
+      <article class="material-card reveal">
+        <img src="images/white_minoş_urun.jpg" alt="Beyaz Minnoş" loading="lazy" decoding="async" />
+        <div>
+          <span>light look</span>
+          <h3>Beyaz seri</h3>
+          <p>Temiz, sade ve modern bir görünüm sevenler için ideal seçim.</p>
+        </div>
+      </article>
+      <article class="material-card reveal">
+        <img src="images/green_minos.jpeg" alt="Yeşil Minnoş yakın plan" loading="lazy" decoding="async" />
+        <div>
+          <span>close-up</span>
+          <h3>Yakın plan detay</h3>
+          <p>Yumuşak doku ve gövde formu daha net görünür.</p>
+        </div>
+      </article>
+      <article class="material-card reveal">
+        <img src="images/not_green.png" alt="Minnoş alternatif görünüm" loading="lazy" decoding="async" />
+        <div>
+          <span>special</span>
+          <h3>Özel görünüm</h3>
+          <p>Farklı ışıkta ve farklı açıdan Minnoşun karakteri öne çıkar.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="colors__controls reveal">
+      <div class="swatches" role="radiogroup" aria-label="Kılıf" tabindex="0">
+        <button class="swatch" data-color="yosun" data-word="Y O S U N" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#132a22,#0a2a1f 52%,#c5a059);"></span>
+          <span class="swatch__name">Yosun</span>
+        </button>
+        <button class="swatch" data-color="gece" data-word="G E C E" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#111a33,#02040a 56%,#b9c7e6);"></span>
+          <span class="swatch__name">Gece</span>
+        </button>
+        <button class="swatch" data-color="gri" data-word="G R İ" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#2C2C2E,#1C1C1E 58%,#BFC1C3);"></span>
+          <span class="swatch__name">Gri</span>
+        </button>
+        <button class="swatch" data-color="pembe" data-word="P E M B E" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#5b0d2b,#17000a 56%,#f5a6b8);"></span>
+          <span class="swatch__name">Pembe</span>
+        </button>
+        <button class="swatch" data-color="sari" data-word="S A R I" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#4A3A1F,#2D2416 58%,#FFD700);"></span>
+          <span class="swatch__name">Sarı</span>
+        </button>
+        <button class="swatch" data-color="beyaz" data-word="B E Y A Z" role="radio" aria-checked="true">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#F5F5F7,#E8E8EA 58%,#C9CDD1);"></span>
+          <span class="swatch__name">Beyaz</span>
+        </button>
+        <button class="swatch" data-color="mavi" data-word="M A V İ" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#1e40af,#0f172a 58%,#38bdf8);"></span>
+          <span class="swatch__name">Mavi</span>
+        </button>
+        <button class="swatch" data-color="kirmizi" data-word="K I R M I Z I" role="radio" aria-checked="false">
+          <span class="swatch__chip" style="--c: linear-gradient(145deg,#b91c1c,#3f0c0c 58%,#f87171);"></span>
+          <span class="swatch__name">Kırmızı</span>
+        </button>
+      </div>
+      <p class="colors__note" id="colorsNote" aria-live="polite"><span>Şu an:</span> <strong>Beyaz</strong> — Sadece bu kartın rengi değişir, sayfa sabit kalır.</p>
     </div>
   </section>
 
@@ -361,7 +411,17 @@
       <div class="window__body window__body--video">
         <div class="video-shell" id="videoShell" aria-busy="true" aria-label="Video yükleniyor">
           <div class="video-shell__loading" id="videoLoading" aria-hidden="true"></div>
-          <video class="product-video" id="productVideo" src="video/minnos_web_vid.mp4" controls playsinline preload="metadata" poster="images/minoş_1.png"></video>
+          <!-- Referans YouTube videosu: site sahipleri aşağıdaki embed URL'yi kendi video linkleriyle değiştirebilir -->
+          <iframe
+            class="product-video"
+            id="productVideoFrame"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Minnoş referans video"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>
@@ -372,9 +432,9 @@
     <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
     <p class="caption reveal"><span class="k">05</span><span class="kdot">·</span><span>sahiplen</span></p>
     <h2 class="display cta__title reveal">
-      Onu <em>sahiplenmek</em><br />ister misin?
+      Minnoşu <em>evine davet et.</em>
     </h2>
-    <p class="cta__sub reveal">Hazır. Biraz utangaç. Ama tamamen senin olacak.</p>
+    <p class="cta__sub reveal">Minnoş hakkında hızlıca bilgi al, sana en uygun modeli birlikte seçelim.</p>
     <div class="cta__actions reveal">
       <span id="adoptMailHint" class="visually-hidden">Onayladığınızda e-posta uygulamanız açılır.</span>
       <button class="button button--huge" id="adoptBtn" type="button" aria-describedby="adoptMailHint">
@@ -396,11 +456,28 @@
     <span class="dock__time" id="dockTime">00:00</span>
   </div>
 
+  <section class="contact" id="contact">
+    <p class="caption reveal"><span class="k">06</span><span class="kdot">·</span><span>iletişim</span></p>
+    <h2 class="display reveal">Bize <em>hemen ulaş.</em></h2>
+    <p class="lead reveal">En hızlı dönüş için Instagram DM veya e-posta kullanabilirsin.</p>
+    <div class="contact__cards">
+      <a class="contact__card reveal" href="mailto:info@makinafleo.com">
+        <strong>E-posta</strong><span>info@makinafleo.com</span>
+      </a>
+      <a class="contact__card reveal" href="https://instagram.com/makin_afleo?igshid=MmIzYWVlNDQ5Yg==" target="_blank" rel="noopener noreferrer">
+        <strong>Instagram</strong><span>@makin_afleo</span>
+      </a>
+      <a class="contact__card reveal" href="https://www.youtube.com/channel/UC4JMOTgAy32O7BfJBDLREKQ" target="_blank" rel="noopener noreferrer">
+        <strong>YouTube</strong><span>Videoları izle</span>
+      </a>
+    </div>
+  </section>
+
   <footer class="site-footer" id="footer">
     <div class="footer-card">
       <div class="footer-brand">
         <a href="#colors" class="footer-logo" aria-label="Üst bölüme dön">
-          <img src="images/minoş_1-removebg-preview.png" alt="Minnoş" loading="lazy" decoding="async" />
+          <img src="images/logo.png" alt="Minnoş" loading="lazy" decoding="async" />
         </a>
         <h2>minnoş</h2>
         <p>minik bedeninde kocaman bir kalbi var.</p>
