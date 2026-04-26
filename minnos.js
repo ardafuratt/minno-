@@ -62,11 +62,7 @@
     DOCK?.classList.add("is-in");
     heroReveal();
   }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => setTimeout(hideBootAndReveal, 250));
-  } else {
-    setTimeout(hideBootAndReveal, 250);
-  }
+  hideBootAndReveal();
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && BOOT && !BOOT.classList.contains("is-gone")) hideBootAndReveal();
   });
