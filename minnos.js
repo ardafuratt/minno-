@@ -63,9 +63,9 @@
     heroReveal();
   }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => setTimeout(hideBootAndReveal, 1200));
+    document.addEventListener("DOMContentLoaded", () => setTimeout(hideBootAndReveal, 250));
   } else {
-    setTimeout(hideBootAndReveal, 1200);
+    setTimeout(hideBootAndReveal, 250);
   }
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && BOOT && !BOOT.classList.contains("is-gone")) hideBootAndReveal();
@@ -721,36 +721,11 @@
   function heroReveal() {
     if (heroRevealed) return;
     heroRevealed = true;
-    if (!window.gsap || reducedMotion) return;
-    const g = window.gsap;
-    const tl = g.timeline({ defaults: { ease: "power3.out" } });
-    tl.from(".colors--welcome .caption", { opacity: 0, y: 20, filter: "blur(8px)",  duration: 0.7 })
-      .from(".colors__title",             { opacity: 0, y: 54, filter: "blur(14px)", duration: 1.0 }, "-=0.42")
-      .from(".colors--welcome .lead",     { opacity: 0, y: 20, filter: "blur(8px)",  duration: 0.75 }, "-=0.55")
-      .from("#colorsStage",               { opacity: 0, y: 34, scale: 0.985, filter: "blur(10px)", duration: 1.1 }, "-=0.5")
-      .from(".colors__controls",          { opacity: 0, y: 18, filter: "blur(8px)", duration: 0.75 }, "-=0.55");
   }
 
   /* ---------- ScrollTrigger reveals ---------- */
   function bindScrollReveals() {
-    if (window.matchMedia("(max-width: 900px)").matches) return;
-    if (!window.gsap || !window.ScrollTrigger) return;
-    const g = window.gsap;
-    g.registerPlugin(window.ScrollTrigger);
-
-    $$(".reveal").forEach(el => {
-      if (el.closest(".colors--welcome")) return; // first screen handled separately
-      g.fromTo(el,
-        { opacity: 0, y: 28, filter: "blur(10px)" },
-        {
-          opacity: 1, y: 0, filter: "blur(0px)",
-          duration: 1, ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 88%", once: true }
-        }
-      );
-    });
-
-    // Performance mode: skip heavy parallax effects.
+    return;
   }
 
   /* ---------- Init when libs ready ---------- */

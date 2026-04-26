@@ -23,6 +23,7 @@
   <meta name="twitter:description" content="Minnoş, dokununca hissedip, baktığında gülümseyen minik bir robot arkadaş." />
   <meta name="twitter:image" content="https://makinafleo.com/images/mino%C5%9F_1.png" />
   <link rel="icon" href="images/favicon_2.ico" />
+  <link rel="preload" as="image" href="images/minos.png" fetchpriority="high" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,8 +86,8 @@
       muted
       loop
       playsinline
-      preload="auto"
-      poster="images/minoş_1.png"
+      preload="metadata"
+      poster="images/minos.png"
     ></video>
     <div class="hero-video__veil" aria-hidden="true"></div>
     <div class="hero-video__content">
@@ -192,7 +193,7 @@
     </div>
     <div class="materials__grid">
       <article class="material-card reveal">
-        <img src="images/green_minoş_urun.jpg" alt="Yosun Minnoş" loading="lazy" decoding="async" />
+        <img src="images/green_minoş_urun.jpg" alt="Yosun Minnoş" loading="eager" fetchpriority="high" decoding="async" />
         <div>
           <span>soft shell</span>
           <h3>Tüylü ve sıcak yüzey</h3>
@@ -200,7 +201,7 @@
         </div>
       </article>
       <article class="material-card reveal">
-        <img src="images/gray_minoş_urun.jpg" alt="Gri Minnoş" loading="lazy" decoding="async" />
+        <img src="images/gray_minoş_urun.jpg" alt="Gri Minnoş" loading="eager" fetchpriority="high" decoding="async" />
         <div>
           <span>oled display</span>
           <h3>Siyah ekranda mavi ifade</h3>
@@ -208,7 +209,7 @@
         </div>
       </article>
       <article class="material-card reveal">
-        <img src="images/minoş_1.png" alt="Minnoş renkleri" loading="lazy" decoding="async" />
+        <img src="images/minoş_1.png" alt="Minnoş renkleri" loading="eager" fetchpriority="high" decoding="async" />
         <div>
           <span>collection</span>
           <h3>Altı farklı karakter</h3>
@@ -216,7 +217,7 @@
         </div>
       </article>
       <article class="material-card reveal">
-        <img src="images/white_minoş_urun.jpg" alt="Beyaz Minnoş" loading="lazy" decoding="async" />
+        <img src="images/white_minoş_urun.jpg" alt="Beyaz Minnoş" loading="eager" decoding="async" />
         <div>
           <span>light look</span>
           <h3>Beyaz seri</h3>
@@ -224,7 +225,7 @@
         </div>
       </article>
       <article class="material-card reveal">
-        <img src="images/green_minos.jpeg" alt="Yeşil Minnoş yakın plan" loading="lazy" decoding="async" />
+        <img src="images/green_minos.jpeg" alt="Yeşil Minnoş yakın plan" loading="eager" decoding="async" />
         <div>
           <span>close-up</span>
           <h3>Yakın plan detay</h3>
@@ -232,7 +233,7 @@
         </div>
       </article>
       <article class="material-card reveal">
-        <img src="images/not_green.png" alt="Minnoş alternatif görünüm" loading="lazy" decoding="async" />
+        <img src="images/not_green.png" alt="Minnoş alternatif görünüm" loading="eager" decoding="async" />
         <div>
           <span>special</span>
           <h3>Özel görünüm</h3>
@@ -417,7 +418,7 @@
             id="productVideoFrame"
             src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
             title="Minnoş referans video"
-            loading="lazy"
+            loading="eager"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
@@ -477,7 +478,7 @@
     <div class="footer-card">
       <div class="footer-brand">
         <a href="#colors" class="footer-logo" aria-label="Üst bölüme dön">
-          <img src="images/logo.png" alt="Minnoş" loading="lazy" decoding="async" />
+          <img src="images/logo.png" alt="Minnoş" loading="eager" decoding="async" />
         </a>
         <h2>minnoş</h2>
         <p>minik bedeninde kocaman bir kalbi var.</p>
